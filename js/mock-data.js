@@ -69,12 +69,10 @@
   var renderPins = function (data) {
     var fragment = document.createDocumentFragment();
     var mapPinsElement = map.querySelector('.map__pins');
-
-    for (var i = 0; i < data.length; i++) {
-      var AdItem = data[i];
+    data.forEach(function (AdItem) {
       var pinElement = createPinElement(AdItem);
       fragment.appendChild(pinElement);
-    }
+    });
     mapPinsElement.appendChild(fragment);
   };
 
