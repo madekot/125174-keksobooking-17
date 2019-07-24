@@ -9,8 +9,6 @@
   var PIN_WIDTH = 50;
   var PIN_HEIGHT = 70;
 
-  var map = document.querySelector('.map');
-
   var couterAvatar = (function () {
     var couter = AVATAR_MIN;
     return function () {
@@ -36,12 +34,8 @@
     };
   };
 
-  var activateMap = function () {
-    map.classList.remove('map--faded');
-  };
 
   var createAdItems = function () {
-    activateMap();
     var result = [];
     for (var i = 0; i < QUANTITY_ADS; i++) {
       result.push(createAd());
@@ -68,7 +62,7 @@
 
   var renderPins = function (data) {
     var fragment = document.createDocumentFragment();
-    var mapPinsElement = map.querySelector('.map__pins');
+    var mapPinsElement = window.utils.element.map.querySelector('.map__pins');
     data.forEach(function (AdItem) {
       var pinElement = createPinElement(AdItem);
       fragment.appendChild(pinElement);
@@ -76,6 +70,12 @@
     mapPinsElement.appendChild(fragment);
   };
 
+  var renderMockPins = function () {
+    return renderPins(createAdItems());
+  };
 
-  renderPins(createAdItems());
+  window.mockData = {
+    renderPins: renderMockPins,
+  };
+
 })();
