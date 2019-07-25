@@ -1,13 +1,13 @@
 'use strict';
 (function () {
-  var map = window.utils.element.map;
-  var mapPinMain = map.querySelector('.map__pin--main');
+  var cityMap = window.element.cityMap;
 
   var setAddressValue = function (value) {
-    var addressElement = window.utils.element.adForm.querySelector('#address');
-    var coordinates = window.utils.getPinCoordinates(mapPinMain);
+    var mapPinMain = cityMap.querySelector('.map__pin--main');
+    var addressElement = window.element.adForm.querySelector('#address');
+    var coordinates = window.utils.getCoordinatesFromParent(mapPinMain);
     value = value || coordinates.x + ', ' + coordinates.y;
-    return window.utils.setValueElement(addressElement, value);
+    addressElement.value = value;
   };
 
   setAddressValue();

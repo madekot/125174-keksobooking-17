@@ -62,7 +62,7 @@
 
   var renderPins = function (data) {
     var fragment = document.createDocumentFragment();
-    var mapPinsElement = window.utils.element.map.querySelector('.map__pins');
+    var mapPinsElement = window.element.cityMap.querySelector('.map__pins');
     data.forEach(function (AdItem) {
       var pinElement = createPinElement(AdItem);
       fragment.appendChild(pinElement);
