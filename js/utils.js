@@ -19,10 +19,6 @@
 
   window.utils = {
     getCoordinatesFromParent: getCoordinatesFromParent,
-    element: {
-      cityMap: document.querySelector('.map'),
-      adForm: document.querySelector('.ad-form'),
-    },
     random: {
       integer: randomInteger,
       elementArr: getRandomArrayElement,
