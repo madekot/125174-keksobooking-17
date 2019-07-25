@@ -10,7 +10,15 @@
     return multitude[randomInteger(0, multitude.length - 1)];
   };
 
+  var getCoordinatesFromParent = function (element) {
+    return {
+      x: element.offsetLeft,
+      y: element.offsetTop,
+    };
+  };
+
   window.utils = {
+    getCoordinatesFromParent: getCoordinatesFromParent,
     random: {
       integer: randomInteger,
       elementArr: getRandomArrayElement,
