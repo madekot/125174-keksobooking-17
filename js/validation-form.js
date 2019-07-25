@@ -1,15 +1,44 @@
 'use strict';
 (function () {
-  var typeOfHousingElement = document.querySelector('#type');
-  var bungaloElement = typeOfHousingElement.querySelector('[value="bungalo"]');
-  var flatElement = typeOfHousingElement.querySelector('[value="flat"]');
-  var houseElement = typeOfHousingElement.querySelector('[value="house"]');
-  var palaceElement = typeOfHousingElement.querySelector('[value="palace"]');
-
   var priceElement = document.querySelector('#price');
+  var timeIn = document.querySelector('#timein');
+  var timeout = document.querySelector('#timeout');
+  var typeOfHousingElement = document.querySelector('#type');
+
+  var typeToPrice = {
+    'bungalo': 0,
+    'flat': 1000,
+    'house': 5000,
+    'palace': 10000,
+  };
+
+  var setTypeToPrice = function () {
+    priceElement.placeholder = typeToPrice[typeOfHousingElement.querySelector(':checked').value];
+    priceElement.min = priceElement.placeholder;
+  };
 
   typeOfHousingElement.addEventListener('change', function () {
-    console.log('hello');
+    setTypeToPrice();
+  });
+
+  var timeInToTimeOut = {
+    '12:00': '12:00',
+    '13:00': '13:00',
+    '14:00': '14:00',
+  };
+
+  timeIn.addEventListener('change', function () {
+    timeout.value = timeInToTimeOut[timeIn.value];
+  });
+
+  var timeOutToTimeIn = {
+    '12:00': '12:00',
+    '13:00': '13:00',
+    '14:00': '14:00',
+  };
+
+  timeout.addEventListener('change', function () {
+    timeIn.value = timeOutToTimeIn[timeout.value];
   });
 
 })();
