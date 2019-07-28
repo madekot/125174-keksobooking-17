@@ -4,7 +4,6 @@
   var timeIn = document.querySelector('#timein');
   var timeout = document.querySelector('#timeout');
   var typeOfHousingElement = document.querySelector('#type');
-  var roomNumber = document.querySelector('room_number')
 
   var typeToPrice = {
     'bungalo': 0,
@@ -41,12 +40,5 @@
   timeout.addEventListener('change', function () {
     timeIn.value = timeOutToTimeIn[timeout.value];
   });
-
-  var roomToGuest = {
-    1: 1,
-    2: 2,
-    3: 3,
-    100: 0,
-  };
 
 })();
