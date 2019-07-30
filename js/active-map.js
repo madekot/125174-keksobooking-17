@@ -33,13 +33,58 @@
     })();
   };
 
-  pinMainElement.addEventListener('click', function () {
+  var isActiveMap = false;
+  var activeMap = function () {
+    if (!isActiveMap) {
+      deleteInactive();
+      isActiveMap = true;
+    }
+  };
+
+  pinMainElement.addEventListener('mousedown', function (mousedownEvt) {
+    mousedownEvt.preventDefault();
+
+    var coordinateStart = {
+      x: mousedownEvt.clientX,
+      y: mousedownEvt.clientY,
+    };
+
+    var onCityMapMouseMove = function (mousemoveEvt) {
+      mousemoveEvt.preventDefault();
+      activeMap();
+
+      var shiftCoordinate = {
+        x: coordinateStart.x - mousemoveEvt.clientX,
+        y: coordinateStart.y - mousemoveEvt.clientY,
+      };
+
+      coordinateStart = {
+        x: mousemoveEvt.clientX,
+        y: mousemoveEvt.clientY,
+      };
+
+      pinMainElement.style.left = (pinMainElement.offsetLeft - shiftCoordinate.x) + 'px';
+      pinMainElement.style.top = (pinMainElement.offsetTop - shiftCoordinate.y) + 'px';
+
+      var onCityMapMouseUp = function (mouseUpEvt) {
+        mouseUpEvt.preventDefault();
+        document.removeEventListener('mousemove', onCityMapMouseMove);
+        document.removeEventListener('mouseup', onCityMapMouseUp);
+      };
+
+      document.addEventListener('mouseup', onCityMapMouseUp);
+    };
+
+    document.addEventListener('mousemove', onCityMapMouseMove);
+  });
+
+  var deleteInactive = function () {
     deleteClassInactiveMap();
     deleteClassInactiveForms();
     deleteAttributeAdFormInactive();
     deleteAttributeFormFilterInactive();
     window.mockData.renderPins();
-  });
+  };
 
   pinMainElement.addEventListener('mouseup', function () {
     window.main.setAddressValue();
